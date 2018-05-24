@@ -1,0 +1,11 @@
+remote_user=usernamehere
+remote_host=example.com
+
+ssh -A -n -o StrictHostKeyChecking=no ${remote_user}@${remote_host} && \
+sudo apt-get update && \
+sudo apt-get -f install -y && \
+sudo apt-get -o Dpkg::Options::="--force-confnew" -yy dist-upgrade -y && \
+sudo apt-get autoremove -y && \
+[ -f /var/run/reboot-required ] && \
+echo "sudo reboot now" && \
+sudo reboot now 
